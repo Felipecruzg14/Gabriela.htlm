@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Interactivo</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      text-align: center; 
+      background-color: #f9f9f9; 
+    }
+    .section { display: none; }
+    .visible { display: block; }
+    
+    /* Estilo para el tiempo */
+    .tiempo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      margin: 20px auto;
+      opacity: 0; /* Inicialmente oculto */
+      animation: aparecer 2s ease forwards; /* Animación de aparición */
+    }
+
+    /* Animación de aparición */
+    @keyframes aparecer {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px); /* Mueve el texto hacia arriba */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0); /* Regresa a su posición original */
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Primera Sección -->
+<div id="inicio" class="section visible">
+  <h1>Felipe y Gaby</h1>
+  <button onclick="mostrarTiempo()">Mostrar Tiempo</button>
+  <button onclick="mostrarSeccion('historia')">Iniciar Preguntas</button>
+  <div id="tiempo" class="tiempo" style="display:none;">1 año con 5 meses</div>
+</div>
+
+<!-- Segunda Sección - Historia -->
+<div id="historia" class="section">
+  <h2>Historia</h2>
+  <p>Este es el inicio de la historia de Felipe y Gaby.</p>
+  <button onclick="mostrarSeccion('pregunta1')">Iniciar Formulario</button>
+</div>
+
+<!-- Pregunta 1 -->
+<div id="pregunta1" class="section">
+  <h3>Pregunta 1</h3>
+  <img src="https://lh3.googleusercontent.com/pw/AP1GczMyaAltxFFuNYI3u0opwD_DTtxtvH7KX8vAplgeTmRaLQTcTZWdDMc-o2Ob6AI-CicvKTOZZSV7IfxusmqfsK5eShgPKtVzIQ759YoFfSzTZpIGJb614SLBC87CwrVoc1aBIXdtVoZS9lKSjcldHPqsYg=w494-h878-s-no-gm?authuser=0" alt="Imagen de Ejemplo">
+  <p>Este fue el unos de los primeros detalles que me diste al ya ser algo oficialm en si Gaby, que sentiste cuando hiciste este lindo detalle?</p>
+  <input type="text" id="respuesta1" placeholder="Escribe tu respuesta aquí">
+  <button onclick="mostrarSeccion('inicio')">Volver al Inicio</button>
+</div>
+
+<script>
+  function mostrarTiempo() {
+    const tiempo = document.getElementById('tiempo');
+    tiempo.style.display = 'block'; // Muestra el tiempo
+    // Se fuerza la animación de aparición
+    setTimeout(() => {
+      tiempo.style.animation = 'aparecer 2s ease forwards'; // Inicia la animación
+    }, 100); // Pequeño retraso para que se muestre antes de la animación
+  }
+
+  function mostrarSeccion(seccionID) {
+    // Ocultar todas las secciones
+    const secciones = document.querySelectorAll('.section');
+    secciones.forEach(section => section.classList.remove('visible'));
+
+    // Mostrar la sección seleccionada
+    document.getElementById(seccionID).classList.add('visible');
+  }
+</script>
+
+</body>
+</html>
+
